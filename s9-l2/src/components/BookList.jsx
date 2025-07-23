@@ -18,7 +18,7 @@ class BookList extends Component {
         //Lista dei libri in base al genere scelto in Welcome
         const currentGender = this.props.gender
 
-        const {searchForm} = this.state;
+        const { searchForm } = this.state;
 
         // Libri per titolo
         // Converto in minuscolo per evitare errori
@@ -38,13 +38,15 @@ class BookList extends Component {
                                 onChange={this.searchChange} />
                         </Form.Group>
                     </Form>
-                    
-          {filteredBooks.length > 0 ? ( filteredBooks.map((book) => (
-              <SingleBook book={book} key={book.asin} />)))
-              :
-              (<p className="text-center text-danger mt-4">Nessun libro trovato con questo titolo.</p>
-          )}
-                   
+
+                    {filteredBooks.length > 0 ? (filteredBooks.map((book) => (
+                        <SingleBook book={book} key={book.asin} />)))
+                        :
+                        (<div className="min-vh-100">
+                            <p className="text-center text-danger mt-4">Nessun libro trovato con questo titolo.</p>
+                         </div>
+                        )}
+
                 </Row>
             </Container>
         )
