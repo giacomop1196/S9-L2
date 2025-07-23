@@ -4,6 +4,7 @@ import MyNavbar from './components/MyNavbar'
 import Welcome from './components/Welcome'
 import AllTheBooks from './components/AllTheBooks'
 import MyFooter from './components/MyFooter'
+import BookList from './components/BookList'
 
 function App() {
 
@@ -12,7 +13,7 @@ function App() {
     <>
       <MyNavbar />
       <Welcome />
-      <AllTheBooks />
+      <BookList />
       <MyFooter />
     </>
   )

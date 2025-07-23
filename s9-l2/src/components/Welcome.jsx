@@ -1,4 +1,4 @@
-import { Alert, Container, Row, Col } from 'react-bootstrap'
+import { Alert, Container, Row } from 'react-bootstrap'
 
 const Welcome = () => {
     return (
