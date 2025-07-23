@@ -13,6 +13,7 @@ class Welcome extends Component {
         gender: fantasyBook
     }
 
+    //Funzione per cambiare genere
     changeBookList = (genderList) => {
         this.setState({
             gender: genderList
