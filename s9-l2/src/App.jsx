@@ -13,7 +13,6 @@ function App() {
     <>
       <MyNavbar />
       <Welcome />
-      <BookList />
       <MyFooter />
     </>
   )
