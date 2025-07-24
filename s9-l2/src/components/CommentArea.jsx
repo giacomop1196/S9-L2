@@ -36,6 +36,7 @@ class CommentArea extends Component {
         return (
             <>
                 <CommentsList comment={reviewList} />
+                <AddComment commentId={this.props.commentId} />
             </>
         );
     }

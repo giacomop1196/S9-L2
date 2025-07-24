@@ -22,8 +22,8 @@ class SingleBook extends Component {
 
         return (
             <Col xs={12} md={4} key={book.asin} className="mb-4">
-                <Card style={{ width: '18rem' }} className={`h-100 ${selected ? 'border-3 border-danger bg-dark text-white shadow-lg' : ''}`} onClick={this.buttonSelected}>
-                    <Card.Img variant="top" src={book.img} />
+                <Card style={{ width: '18rem' }} className={`h-100 ${selected ? 'border-3 border-danger bg-dark text-white shadow-lg' : ''}`}>
+                    <Card.Img variant="top" src={book.img} onClick={this.buttonSelected} />
                     <Card.Body>
                         <Card.Title className="text-center">{book.title}</Card.Title>
                         <Card.Text className="text-center">
