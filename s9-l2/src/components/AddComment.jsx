@@ -59,7 +59,7 @@ class AddComment extends Component {
             <Form onSubmit={this.submitForm}>
                 <Form.Group className="mb-3">
                     <Form.Label>Lascia un commento</Form.Label>
-                    <Form.Control as="textarea" rows={3} value={this.state.formValues.comment}
+                    <Form.Control as="textarea" required rows={3} value={this.state.formValues.comment}
                         onChange={(e) => {
                             this.setState({
                                 formValues: {
@@ -72,7 +72,7 @@ class AddComment extends Component {
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>Dai un voto da 1 a 5</Form.Label>
-                    <Form.Control type="number" value={this.state.formValues.rate}
+                    <Form.Control type="number" required value={this.state.formValues.rate}
                         onChange={(e) => {
                             this.setState({
                                 formValues: {

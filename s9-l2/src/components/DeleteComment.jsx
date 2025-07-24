@@ -27,7 +27,7 @@ class DeleteComment extends Component {
 
     render() {
         return (
-            <Button variant="light" onClick={() => {
+            <Button variant="danger" className="mt-2" onClick={() => {
                 this.deleteComment(this.props.commentId)
             }}>X</Button>
         )
