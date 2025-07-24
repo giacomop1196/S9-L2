@@ -1,4 +1,5 @@
 import { Component } from "react";
+import DeleteComment from "./DeleteComment";
 
 class CommentsList extends Component {
 
@@ -17,6 +18,7 @@ class CommentsList extends Component {
                         >
                             <p>Commento: {review.comment}</p>
                             <p>Voto: {review.rate}</p>
+                            <DeleteComment commentId={review._id} />
                         </div>
                     );
                 })}
