@@ -15,7 +15,7 @@ class DeleteComment extends Component {
         )
             .then((response) => {
                 if (response.ok) {
-                    console.log('eliminato')
+                    alert('RECENSIONE ELIMINATA!')
                 } else {
                     throw new Error('Errore in fase di eliminazione')
                 }
