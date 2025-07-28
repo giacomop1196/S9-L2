@@ -10,7 +10,6 @@ class CommentsList extends Component {
         return (
             <div className="mt-3">
                 {reviews.map((review) => {
-                    console.log(review);
                     return (
                         <div
                             key={review._id}

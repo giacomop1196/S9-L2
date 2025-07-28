@@ -15,14 +15,25 @@ class AddComment extends Component {
     }
 
     componentDidMount() {
-        console.log(this.props.commentId)
-        this.setState(prevState => ({
-            formValues: {
-                ...prevState.formValues,
-                elementId: this.props.commentId
-            }
-        }));
+        if (this.props.commentId && this.state.formValues.elementId === '') {
+            this.setState(prevState => ({
+                formValues: {
+                    ...prevState.formValues,
+                    elementId: this.props.commentId
+                }
+            }));
+        }
+    }
 
+    componentDidUpdate(prevProps) {
+        if (prevProps.commentId !== this.props.commentId) {
+            this.setState(prevState => ({
+                formValues: {
+                    ...prevState.formValues,
+                    elementId: this.props.commentId
+                }
+            }));
+        }
     }
 
 
@@ -44,6 +55,7 @@ class AddComment extends Component {
                     this.setState({
                         formValues: initialFormValues,
                     })
+                    this.props.onCommentAdded();
                 } else {
                     throw new Error('Errore nella richiesta')
                 }
