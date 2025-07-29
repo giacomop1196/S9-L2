@@ -1,69 +1,57 @@
-import { Component } from "react";
+import { useState, useEffect } from "react";
 import CommentsList from "./CommentsList";
 import AddComment from "./AddComment";
 
-class CommentArea extends Component {
+const CommentArea = ({ selectedBook }) => {
+    const [reviewList, setReviewList] = useState([]);
 
-    state = {
-        reviewList: []
-    }
+    const getComment = () => {
+        if (!selectedBook) {
+            setReviewList([]);
+            return;
+        }
 
-    getComment = () => {
-        fetch("https://striveschool-api.herokuapp.com/api/comments/" + this.props.selectedBook, {
+        fetch("https://striveschool-api.herokuapp.com/api/comments/" + selectedBook, {
             headers: {
                 "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2ODcwYzY5MDc4Y2RkZjAwMTU1ZDY3YTgiLCJpYXQiOjE3NTMzNTgyODYsImV4cCI6MTc1NDU2Nzg4Nn0.ntvzmv3QJspPXrDjgVOP7D-G-21XgtcpvxDGCEHrBgw"
             }
         })
             .then((res) => {
                 if (res.ok) {
-                    return res.json()
+                    return res.json();
                 }
-                throw new Error('Errore nel recupero delle recensioni')
+                throw new Error('Errore nel recupero delle recensioni');
             })
             .then((review) => {
-                this.setState({ reviewList: review })
+                setReviewList(review);
             })
-            .catch()
-    }
+            .catch((error) => {
+                console.error("Errore:", error);
+            });
+    };
 
+    const handleCommentSubmitted = () => {
+        getComment();
+    };
 
-    // NUOVO METODO: Funzione per ricaricare i commenti
-    handleCommentSubmitted = () => {
-        this.getComment(); // Ricarica la lista dei commenti
-    }
+    useEffect(() => {
+        getComment();
+    }, [selectedBook]);
 
-    componentDidMount() {
-        this.getComment()
-    }
+    return (
+        <>
+            {selectedBook ? (
+                <>
+                    <CommentsList comment={reviewList} />
+                    <AddComment commentId={selectedBook} onCommentAdded={handleCommentSubmitted} />
+                </>
+            ) : (
+                <div className="text-center mt-4">
+                    <p className="text-muted">Seleziona un libro per visualizzare le recensioni e aggiungerne una.</p>
+                </div>
+            )}
+        </>
+    );
+};
 
-    componentDidUpdate(prevProps) {
-
-        if (prevProps.selectedBook !== this.props.selectedBook) {
-            this.getComment()
-
-        }
-
-    }
-
-    render() {
-
-        const { reviewList } = this.state
-        const { selectedBook } = this.props;
-        return (
-           <>
-                {selectedBook ? ( // Se selectedBook esiste, mostra i componenti
-                    <>
-                        <CommentsList comment={reviewList} />
-                        <AddComment commentId={selectedBook} onCommentAdded={this.handleCommentSubmitted}/>
-                    </>
-                ) : ( // Altrimenti, mostra un messaggio
-                    <div className="text-center mt-4">
-                        <p className="text-muted">Seleziona un libro per visualizzare le recensioni e aggiungerne una.</p>
-                    </div>
-                )}
-            </>
-        );
-    }
-}
-
-export default CommentArea
+export default CommentArea;
